@@ -40,3 +40,6 @@ source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
 version-file = "src/resume_markdown/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/resume_markdown"]

@@ -11,7 +11,7 @@ Requires: Python ≥ 3.12, Google Chrome or Chromium (for PDF export)
 ## Setup
 
 ```bash
-claude mcp add resume-markdown -- uvx resume-markdown-mcp
+claude mcp add resume-markdown -- uvx resume-markdown-mcp@latest@latest
 ```
 
 ## What Can It Do?
@@ -73,16 +73,16 @@ The package also ships a standalone CLI:
 
 ```bash
 # Create template files in the current directory
-uvx resume-markdown-mcp init
+uvx resume-markdown-mcp@latest init
 
 # Build HTML and PDF from resume.md
-uvx resume-markdown-mcp build
+uvx resume-markdown-mcp@latest build
 
 # Options
-uvx resume-markdown-mcp build --no-pdf          # HTML only
-uvx resume-markdown-mcp build --no-html         # PDF only
-uvx resume-markdown-mcp build myresume.md       # Custom input file
-uvx resume-markdown-mcp build --chrome-path=... # Specify Chrome path
+uvx resume-markdown-mcp@latest build --no-pdf          # HTML only
+uvx resume-markdown-mcp@latest build --no-html         # PDF only
+uvx resume-markdown-mcp@latest build myresume.md       # Custom input file
+uvx resume-markdown-mcp@latest build --chrome-path=... # Specify Chrome path
 ```
 
 The CLI picks up a `resume.css` file alongside the input if present; otherwise the built-in stylesheet is used.
