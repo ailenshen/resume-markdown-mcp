@@ -9,9 +9,6 @@ on:
             - 'example/**'
             - '**.md'
 
-env:
-    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -21,12 +18,12 @@ jobs:
             os: [ubuntu-latest, windows-latest]
     steps:
     - name: Check out repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0  # required for hatch-vcs to read git tags
 
     - name: Set up uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@v6
 
     - name: Install package
       run: uv tool install .
@@ -60,7 +57,7 @@ jobs:
           Move-Item resume.html resume_Windows.html
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
           name: resume-${{ runner.os }}
           path: |
@@ -73,13 +70,13 @@ jobs:
     needs: build
     steps:
     - name: Check out repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Install ImageMagick
       run: sudo apt-get update && sudo apt-get install -y imagemagick
 
     - name: Download Windows artifacts
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v7
       with:
           name: resume-Windows
           path: artifacts
