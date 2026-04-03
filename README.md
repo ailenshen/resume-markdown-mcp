@@ -10,25 +10,8 @@ Requires: Python ≥ 3.12, Google Chrome or Chromium (for PDF export)
 
 ## Setup
 
-### Claude Code
-
 ```bash
 claude mcp add resume-markdown -- uvx resume-markdown-mcp
-```
-
-### Claude Desktop
-
-Add to your `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "resume-markdown": {
-      "command": "uvx",
-      "args": ["resume-markdown-mcp"]
-    }
-  }
-}
 ```
 
 ## What Can It Do?
