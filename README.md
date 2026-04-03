@@ -11,7 +11,7 @@ Requires: Python ≥ 3.12, Google Chrome or Chromium (for PDF export)
 ## Setup
 
 ```bash
-claude mcp add resume-markdown -- uvx resume-markdown-mcp@latest@latest
+claude mcp add resume-markdown -- uvx resume-markdown-mcp@latest
 ```
 
 ## What Can It Do?
