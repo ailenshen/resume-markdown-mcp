@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "resume-markdown": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "/Users/elonshen/Documents/Areas/resume-markdown-mcp",
+        "resume-markdown-mcp"
+      ]
+    }
+  }
+}
