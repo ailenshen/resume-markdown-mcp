@@ -54,8 +54,11 @@ def export_resume_pdf(
 
     By default the built-in stylesheet is applied automatically — no CSS parameter needed.
     If the user wants to customise the style:
-    - Pass `css_path` pointing to a CSS file, OR
-    - Pass `css_content` with the raw CSS text.
+    - **Recommended for iterative editing**: read `resume://style`, modify it, save to a local
+      file (e.g. `~/resume.css`), then pass `css_path` pointing to that file. This way the user
+      can tweak the CSS manually between exports without re-sending it, and future exports just
+      reference the same path with no extra tokens.
+    - Pass `css_content` with the raw CSS text — convenient for one-off changes.
     To see the default stylesheet, read the `resume://style` resource.
 
     ## Parameters
