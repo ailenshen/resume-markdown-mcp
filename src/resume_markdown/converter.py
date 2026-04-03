@@ -3,12 +3,13 @@ import base64
 import itertools
 import logging
 import os
+import queue
 import re
-import select
 import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 from importlib.resources import files
 
@@ -148,21 +149,31 @@ def write_pdf(
         stderr=subprocess.STDOUT,  # merge stderr into stdout so we read one stream
     )
 
+    # Read Chrome output in a background thread — select.select() doesn't
+    # work with pipes on Windows (only sockets), so use a queue instead.
+    line_queue: queue.Queue[bytes | None] = queue.Queue()
+
+    def _reader(stream: object, q: queue.Queue) -> None:
+        for line in iter(stream.readline, b""):
+            q.put(line)
+        q.put(None)  # sentinel: stream closed
+
+    reader = threading.Thread(target=_reader, args=(proc.stdout, line_queue), daemon=True)
+    reader.start()
+
     try:
         pdf_written = False
         deadline = time.monotonic() + timeout
 
         while time.monotonic() < deadline:
-            # Use select so we don't block forever if Chrome stops producing output
-            ready, _, _ = select.select([proc.stdout], [], [], 1.0)
-            if not ready:
-                # No output this second — check if Chrome already exited
+            try:
+                line = line_queue.get(timeout=1.0)
+            except queue.Empty:
                 if proc.poll() is not None:
                     break
                 continue
 
-            line = proc.stdout.readline()
-            if not line:
+            if line is None:
                 break  # EOF: Chrome closed its end of the pipe
 
             text = line.decode("utf-8", errors="replace").strip()
