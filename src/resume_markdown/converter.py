@@ -125,13 +125,13 @@ def write_pdf(
     html64 = base64.b64encode(html.encode("utf-8"))
     options = [
         "--no-sandbox",
-        "--headless",
+        "--headless=new",
         "--print-to-pdf-no-header",
         "--no-pdf-header-footer",
         "--enable-logging=stderr",
         "--log-level=2",
-        "--in-process-gpu",
         "--disable-gpu",
+        "--disable-dev-shm-usage",
     ]
 
     tmpdir = tempfile.mkdtemp(prefix="resume.md_")
