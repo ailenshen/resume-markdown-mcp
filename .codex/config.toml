@@ -1,0 +1,3 @@
+[mcp_servers.resume-markdown]
+command = "uvx"
+args = ["--from", "/Users/ailen/Documents/Resources/tools/resume-markdown-mcp", "resume-markdown-mcp"]

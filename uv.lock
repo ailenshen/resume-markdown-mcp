@@ -471,7 +471,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "markdown", specifier = ">=3.0" },
-    { name = "mcp", specifier = ">=1.27.0" },
+    { name = "mcp", specifier = ">=1.27.0,<2" },
 ]
 
 [[package]]

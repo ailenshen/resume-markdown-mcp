@@ -4,7 +4,7 @@
       "command": "uvx",
       "args": [
         "--from",
-        "/Users/elonshen/Documents/Areas/resume-markdown-mcp",
+        "/Users/ailen/Documents/Resources/tools/resume-markdown-mcp",
         "resume-markdown-mcp"
       ]
     }
